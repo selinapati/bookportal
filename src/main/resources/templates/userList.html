@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User List - KTM Portal</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <nav>
+        <div class="nav-left">
+            <h1><a href="/index">KTM Library Portal</a></h1>
+        </div>
+        <div class="nav-right">
+            <a href="/signup">Sign Up</a>
+            <a href="/login">Login</a>
+        </div>
+    </nav>
+
+    <div class="content">
+        <h1>User Lists</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>S.No</th>
+                    <th>Student ID</th>
+                    <th>Student Name</th>
+                    <th>Email</th>
+                    <th>Book ID</th>
+                    <th>Book Name</th>
+                    <th>Issued Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="user, iterStat : ${users}">
+                    <td th:text="${iterStat.index + 1}">1</td> <!-- S.No Auto Increment -->
+                    <td th:text="${user.studentId}"></td>
+                    <td th:text="${user.studentName}"></td>
+                    <td th:text="${user.email}"></td>
+                    <td th:text="${user.bookID}"></td>
+                    <td th:text="${user.bookName}"></td>
+                    <td th:text="${user.issuedDate}"></td>
+                    <td>
+                        <a th:href="@{/edit(email=${user.email})}">Edit</a>
+                        <form th:action="@{/deleteUser/{id}(id=${user.id})}" method="post">
+                            <input type="submit" value="Delete">
+                        </form>
+                        
+                        
+                        
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        
+    </div>
+</body>
+
+</html>
