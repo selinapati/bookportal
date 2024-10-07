@@ -55,25 +55,52 @@ public class HomeController {
         return "login";
     }
 
+    // @PostMapping("/login")
+    // public String login(@RequestParam String email, @RequestParam String
+    // password, Model model) {
+    // try {
+    // System.out.println("Email: " + email);
+    // System.out.println("Password: " + password);
+    // // Create authentication token
+    // UsernamePasswordAuthenticationToken authToken = new
+    // UsernamePasswordAuthenticationToken(email, password);
+
+    // // Authenticate the user
+    // Authentication authentication =
+    // authenticationManager.authenticate(authToken);
+
+    // // If authentication is successful, set the authentication in the
+    // // SecurityContext
+    // SecurityContextHolder.getContext().setAuthentication(authentication);
+
+    // // Redirect to the dashboard or home page
+    // return "redirect:/bookBorrow"; // Change this to your dashboard URL
+    // } catch (Exception e) {
+    // model.addAttribute("error", "Invalid username or password.");
+    // // System.out.println(username + "++++++++++");
+    // return "login"; // Return to login page with error message
+    // }
+    // }
+
     @PostMapping("/login")
-    public String login(@RequestParam String username, @RequestParam String password, Model model) {
+    public String login(@RequestParam String email, @RequestParam String password, Model model) {
         try {
-            System. out. println(username: "++++++++++");
-            // Create authentication token
-            UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(username, password);
+            // Debugging output to check email and password
+            System.out.println("Email: " + email);
+            System.out.println("Password: " + password);
+
+            // Create authentication token with email
+            UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(email, password);
 
             // Authenticate the user
             Authentication authentication = authenticationManager.authenticate(authToken);
-
-            // If authentication is successful, set the authentication in the
-            // SecurityContext
             SecurityContextHolder.getContext().setAuthentication(authentication);
 
             // Redirect to the dashboard or home page
-            return "redirect:/bookBorrow"; // Change this to your dashboard URL
+            return "redirect:/bookBorrow";
         } catch (Exception e) {
-            model.addAttribute("error", "Invalid username or password.");
-            return "login"; // Return to login page with error message
+            model.addAttribute("error", "Invalid email or password.");
+            return "login";
         }
     }
 
@@ -81,39 +108,41 @@ public class HomeController {
     public String signup() {
         return "signup";
     }
- // Method to handle signup form submission
- @PostMapping("/signup")
- public String signup(@RequestParam String studentName,
-         @RequestParam String email,
-         @RequestParam String password,
-         @RequestParam String confirmPassword,
-         Model model) {
-     // Validate if password and confirmPassword match
-     if (!password.equals(confirmPassword)) {
-         model.addAttribute("errorMessage", "Passwords do not match.");
-         return "signup"; // Return to signup page with an error message
-     }
 
-     // Additional validations such as checking if email already exists
-     if (userService.findByEmail(email) != null) {
-         model.addAttribute("errorMessage", "Email already exists!");
-         return "signup"; // Return to signup page if email already exists
-     }
+    // Method to handle signup form submission
+    @PostMapping("/signup")
+    public String signup(@RequestParam String studentName,
+            @RequestParam String email,
+            @RequestParam String password,
+            @RequestParam String confirmPassword,
+            Model model) {
+        // Validate if password and confirmPassword match
+        if (!password.equals(confirmPassword)) {
+            model.addAttribute("errorMessage", "Passwords do not match.");
+            return "signup"; // Return to signup page with an error message
+        }
 
-     try {
-         // Create new user instance and populate fields
-         User newUser = new User();
-         newUser.setStudentName(studentName);
-         newUser.setEmail(email);
-         newUser.setPassword(password); // Password should be encrypted in the service layer
-         userService.saveUser(newUser); // Save user via service layer
+        // Additional validations such as checking if email already exists
+        if (userService.findByEmail(email) != null) {
+            model.addAttribute("errorMessage", "Email already exists!");
+            return "signup"; // Return to signup page if email already exists
+        }
 
-         return "redirect:/login"; // Redirect to login page after successful signup
-     } catch (Exception e) {
-         model.addAttribute("errorMessage", "Error during signup: " + e.getMessage());
-         return "signup"; // Return to signup page with an error message
-     }
- }
+        try {
+            // Create new user instance and populate fields
+            User newUser = new User();
+            newUser.setStudentName(studentName);
+            newUser.setEmail(email);
+            newUser.setPassword(password); // Password should be encrypted in the service layer
+            userService.saveUser(newUser); // Save user via service layer
+
+            return "redirect:/login"; // Redirect to login page after successful signup
+        } catch (Exception e) {
+            model.addAttribute("errorMessage", "Error during signup: " + e.getMessage());
+            return "signup"; // Return to signup page with an error message
+        }
+    }
+
     // Method to show the Add User form page
     @GetMapping("/addUserForm")
     public String showAddUserForm() {
@@ -155,8 +184,6 @@ public class HomeController {
             return "addUserForm"; // Return to the form with an error message
         }
     }
-
-   
 
     // Method to show the list of registered users
     @GetMapping("/users")

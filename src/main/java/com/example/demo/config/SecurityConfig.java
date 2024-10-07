@@ -36,26 +36,28 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .csrf(csrf -> csrf.disable())
-            .authorizeHttpRequests((requests) -> requests
-                .requestMatchers("/", "/signup", "/users", "/login", "/style.css", "/js/**").permitAll()
-                .anyRequest().authenticated()
-            )
-            .formLogin((form) -> form
-                .loginPage("/login")
-                .defaultSuccessUrl("/index", true)
-                .permitAll()
-            )
-            .logout((logout) -> logout
-                .logoutSuccessUrl("/")
-                .permitAll()
-            );
+                .csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests((requests) -> requests
+                        .requestMatchers("/", "/signup", "/users", "/login", "/style.css", "/js/**").permitAll()
+                        .anyRequest().authenticated())
+                .formLogin((form) -> form
+                        .loginPage("/login")
+                        .usernameParameter("email") // Use email instead of username
+                        .passwordParameter("password") // Ensure password field matches
+                        .defaultSuccessUrl("/bookBorrow", true)
+                        .permitAll())
+
+                .logout((logout) -> logout
+                        .logoutSuccessUrl("/")
+                        .permitAll())
+                .authenticationProvider(authenticationProvider());
 
         return http.build();
     }
 
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
+            throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
 }
