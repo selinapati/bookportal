@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -6,88 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Borrow Portal</title>
     <link rel="stylesheet" href="style.css">
-</head>
+    <script>
+        function borrowBook(bookId) {
+            // Show the alert message
+            alert("You have borrowed the book!");
+
+            // Submit the form to update the status of the book
+            document.getElementById('borrowForm-' + bookId).submit();
+        }
+    </script></head>
 
 <body>
-    <!-- Header / Navbar -->
+    
     <header>
         <nav>
             <div class="nav-left">
                 <h1><a href="/index">KTM Library Portal</a></h1>
             </div>
+            <div class="nav-right">
+                <a href="/index">Log Out</a>
+            </div>
         </nav>
 
     </header>
 
-    <!-- Main Content - Book Cards -->
-    <main>
+ <main>
         <section class="book-grid">
-            <!-- Book Card 1 -->
-            <div class="book-card">
-                <img src="img/book1.jpg" alt="Book 1">
-                <div class="book-details">
-                    <h2>back to work</h2>
-                    <p>Author: Bill Clinton</p>
-                    <p>Available: 10 copies</p><br>
-                    <button>Borrow</button>
-                </div>
-            </div>
-
-            <!-- Book Card 2 -->
-            <div class="book-card">
-                <img src="img/book2.jpeg" alt="Book 2">
-                <div class="book-details">
-                    <h2>Rich Dad Poor Dad</h2>
-                    <p>Author: Robert T. Kiyoaki</p>
-                    <p>Available: 5 copies</p><br>
-                    <button>Borrow</button>
-                </div>
-            </div>
-
-            <!-- Book Card 3 -->
-            <div class="book-card">
-                <img src="img/book1.jpg" alt="Book 1">
-                <div class="book-details">
-                    <h2>back to work</h2>
-                    <p>Author: Bill Clinton</p>
-                    <p>Available: 10 copies</p><br>
-                    <button>Borrow</button>
-                </div>
-            </div>
-
-            <!-- Book Card 4 -->
-            <div class="book-card">
-                <img src="img/book2.jpeg" alt="Book 2">
-                <div class="book-details">
-                    <h2>Rich Dad Poor Dad</h2>
-                    <p>Author: Robert T. Kiyoaki</p>
-                    <p>Available: 5 copies</p><br>
-                    <button>Borrow</button>
-                </div>
-            </div>
-            <!-- Book Card 5 -->
-            <div class="book-card">
-                <img src="img/book1.jpg" alt="Book 1">
-                <div class="book-details">
-                    <h2>back to work</h2>
-                    <p>Author: Bill Clinton</p>
-                    <p>Available: 10 copies</p><br>
-                    <button>Borrow</button>
-                </div>
-            </div>
-
-            <!-- Book Card 6 -->
-            <div class="book-card">
-                <img src="img/book2.jpeg" alt="Book 2">
-                <div class="book-details">
-                    <h2>Rich Dad Poor Dad</h2>
-                    <p>Author: Robert T. Kiyoaki</p>
-                    <p>Available: 5 copies</p><br>
-                    <button>Borrow</button>
-                </div>
-            </div>
             
-            <!-- Book Card 7 -->
             <div class="book-card">
                 <img src="img/book1.jpg" alt="Book 1">
                 <div class="book-details">
@@ -98,7 +43,71 @@
                 </div>
             </div>
 
-            <!-- Book Card 8 -->
+            
+            <div class="book-card">
+                <img src="img/book2.jpeg" alt="Book 2">
+                <div class="book-details">
+                    <h2>Rich Dad Poor Dad</h2>
+                    <p>Author: Robert T. Kiyoaki</p>
+                    <p>Available: 5 copies</p><br>
+                    <button>Borrow</button>
+                </div>
+            </div>
+
+           
+            <div class="book-card">
+                <img src="img/book1.jpg" alt="Book 1">
+                <div class="book-details">
+                    <h2>back to work</h2>
+                    <p>Author: Bill Clinton</p>
+                    <p>Available: 10 copies</p><br>
+                    <button>Borrow</button>
+                </div>
+            </div>
+
+            
+            <div class="book-card">
+                <img src="img/book2.jpeg" alt="Book 2">
+                <div class="book-details">
+                    <h2>Rich Dad Poor Dad</h2>
+                    <p>Author: Robert T. Kiyoaki</p>
+                    <p>Available: 5 copies</p><br>
+                    <button>Borrow</button>
+                </div>
+            </div>
+         
+            <div class="book-card">
+                <img src="img/book1.jpg" alt="Book 1">
+                <div class="book-details">
+                    <h2>back to work</h2>
+                    <p>Author: Bill Clinton</p>
+                    <p>Available: 10 copies</p><br>
+                    <button>Borrow</button>
+                </div>
+            </div>
+
+
+            <div class="book-card">
+                <img src="img/book2.jpeg" alt="Book 2">
+                <div class="book-details">
+                    <h2>Rich Dad Poor Dad</h2>
+                    <p>Author: Robert T. Kiyoaki</p>
+                    <p>Available: 5 copies</p><br>
+                    <button>Borrow</button>
+                </div>
+            </div>
+          
+            <div class="book-card">
+                <img src="img/book1.jpg" alt="Book 1">
+                <div class="book-details">
+                    <h2>back to work</h2>
+                    <p>Author: Bill Clinton</p>
+                    <p>Available: 10 copies</p><br>
+                    <button>Borrow</button>
+                </div>
+            </div>
+
+      
             <div class="book-card">
                 <img src="img/book2.jpeg" alt="Book 2">
                 <div class="book-details">
@@ -111,7 +120,182 @@
         </section>
     </main>
 
-    <!-- Footer -->
+
+    <footer>
+        <p>&copy; 2024 KTM Library Portal. All rights reserved.</p>
+    </footer>
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Borrow Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- <script>
+        function borrowBook(bookId) {
+            // Perform an AJAX request to borrow the book
+            fetch(`/borrow?bookId=${bookId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+            }).then(response => response.json())  // Expecting JSON response
+              .then(data => {
+                  // If the book was successfully borrowed, update the button and availability
+                  const borrowButton = document.getElementById(`borrowButton-${bookId}`);
+                  const availabilityText = document.getElementById(`availability-${bookId}`);
+    
+                  if (data.availableCopies === 0) {
+                      // If no copies are available, make the button red and show "Unavailable"
+                      borrowButton.style.backgroundColor = 'red';
+                      borrowButton.innerText = 'Unavailable';
+                      borrowButton.disabled = true;  // Disable the button
+                      availabilityText.innerText = 'Unavailable';
+                  } else {
+                      // Update the number of available copies
+                      availabilityText.innerText = `Available: ${data.availableCopies} copies`;
+                  }
+    
+                  // Show an alert for successful borrowing
+                  alert("You have borrowed the book!");
+              })
+              .catch(error => {
+                  console.error('Error:', error);
+                  alert("Could not borrow the book. Please try again.");
+              });
+        }
+    </script> -->
+    <script>
+        function borrowBook(bookId) {
+            fetch(`/borrow?bookId=${bookId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json(); // Parse the JSON response
+            })
+            .then(data => {
+                const borrowButton = document.getElementById(`borrowButton-${bookId}`);
+                const availabilityText = document.getElementById(`availability-${bookId}`);
+
+                if (data.availableCopies === 0) {
+                    borrowButton.style.backgroundColor = 'red';
+                    borrowButton.innerText = 'Unavailable';
+                    borrowButton.disabled = true;
+                    availabilityText.innerText = 'Available: 0 copies';
+                } else {
+                    availabilityText.innerText = `Available: ${data.availableCopies} copies`;
+                }
+
+                alert("You have successfully borrowed the book!");
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert("Could not borrow the book. Please try again.");
+            });
+        }
+    </script>
+    
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="nav-left">
+                <h1><a href="/index">KTM Library Portal</a></h1>
+            </div>
+            <div class="nav-right">
+                <a href="/index">Log Out</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="book-grid">
+            <!-- Book 1
+            <div class="book-card">
+                <img src="img/book1.jpg" alt="Book 1">
+                <div class="book-details">
+                    <h2>Back to Work</h2>
+                    <p>Author: Bill Clinton</p>
+                    <p id="availability-1">Available: 1 copies</p><br>
+                    <button id="borrowButton-1" onclick="borrowBook(1)">Borrow</button>
+                </div>
+            </div> -->
+            <div class="book-card">
+                <img src="img/book1.jpg" alt="Book 1">
+                <div class="book-details">
+                    <h2>Back to Work</h2>
+                    <p>Author: Bill Clinton</p>
+                    <p id="availability-1">Available: 10 copies</p>
+                    <button id="borrowButton-1" onclick="borrowBook(1)">Borrow</button>
+                </div>
+            </div>
+            
+            
+
+            <!-- Book 2 -->
+            <div class="book-card">
+                <img src="img/book2.jpeg" alt="Book 2">
+                <div class="book-details">
+                    <h2>Rich Dad Poor Dad</h2>
+                    <p>Author: Robert T. Kiyosaki</p>
+                    <p>Available: 5 copies</p><br>
+
+                    <!-- Borrow Button and Form -->
+                    <form id="borrowForm-2" action="/borrowBook" method="post">
+                        <input type="hidden" name="bookId" value="2">
+                        <button type="button" onclick="borrowBook(2)">Borrow</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Repeat for other books -->
+            <div class="book-card">
+                <img src="img/book1.jpg" alt="Book 1">
+                <div class="book-details">
+                    <h2>Back to Work</h2>
+                    <p>Author: Bill Clinton</p>
+                    <p>Available: 10 copies</p><br>
+
+                    <!-- Borrow Button and Form -->
+                    <form id="borrowForm-3" action="/borrowBook" method="post">
+                        <input type="hidden" name="bookId" value="3">
+                        <button type="button" onclick="borrowBook(3)">Borrow</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="book-card">
+                <img src="img/book2.jpeg" alt="Book 2">
+                <div class="book-details">
+                    <h2>Rich Dad Poor Dad</h2>
+                    <p>Author: Robert T. Kiyosaki</p>
+                    <p>Available: 5 copies</p><br>
+
+                    <!-- Borrow Button and Form -->
+                    <form id="borrowForm-4" action="/borrowBook" method="post">
+                        <input type="hidden" name="bookId" value="4">
+                        <button type="button" onclick="borrowBook(4)">Borrow</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Add more book cards as necessary -->
+
+        </section>
+    </main>
+
     <footer>
         <p>&copy; 2024 KTM Library Portal. All rights reserved.</p>
     </footer>

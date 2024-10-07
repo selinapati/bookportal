@@ -1,44 +1,49 @@
 package com.example.demo.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import java.util.Set;
 
 @Entity
-// @Table (name="users")
+@Table(name = "users")
 public class User {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
     private int studentId;
     private String studentName;
     private String email;
-    private String password;  // Add password field
+    private String password; // Add password field
     private int bookID;
     private String bookName;
-    private String issuedDate;
-    private String duration;
+    private String issuedDate; // Ensure this is used appropriately
 
-    // Constructors, getters, and setters
+    @ManyToMany(fetch = FetchType.EAGER) // Fetch roles eagerly for security
+    @JoinTable(
+        name = "userRoles", 
+        joinColumns = @JoinColumn(name = "user_id"), 
+        inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Role> roles;
 
-    public User() {}
+    // Default constructor
+    public User() {
+    }
 
-    public User(int studentId, String studentName, String email, String password, int bookID, String bookName, String issuedDate, String duration) {
+    // Constructor
+    public User(int studentId, String studentName, String email, String password, Set<Role> roles, int bookID,
+            String bookName, String issuedDate) {
         this.studentId = studentId;
         this.studentName = studentName;
         this.email = email;
-        this.password = password;  // Initialize password
+        this.password = password; // Initialize password
+        this.roles = roles;
         this.bookID = bookID;
         this.bookName = bookName;
-        this.issuedDate = issuedDate;
-        this.duration = duration;
+        this.issuedDate = issuedDate; // Ensure this is initialized
     }
 
-    // Getters and setters...
-
+    // Getters and Setters
     public Long getId() {
         return id;
     }
@@ -71,14 +76,6 @@ public class User {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;  // Getter for password
-    }
-
-    public void setPassword(String password) {
-        this.password = password;  // Setter for password
-    }
-
     public int getBookID() {
         return bookID;
     }
@@ -96,18 +93,32 @@ public class User {
     }
 
     public String getIssuedDate() {
-        return issuedDate;
+        return issuedDate; // Corrected from issuedDate() to return the field directly
     }
 
     public void setIssuedDate(String issuedDate) {
         this.issuedDate = issuedDate;
     }
 
-    public String getDuration() {
-        return duration;
+    public String getPassword() {
+        return password;
     }
 
-    public void setDuration(String duration) {
-        this.duration = duration;
+    public void setPassword(String password) {
+        this.password = password; // Setter for password
     }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+
+    public User orElse(Object object) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
 }
