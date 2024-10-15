@@ -7,6 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.function.BooleanSupplier;
 
 @Service
 public class UserService {
@@ -36,5 +37,15 @@ public class UserService {
         if (user != null) {
             userRepository.delete(user);
         }
+    }
+
+    public String encryptPassword(String rawPassword) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'encryptPassword'");
+    }
+
+    public BooleanSupplier checkPassword(String rawPassword, String encryptedPassword) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'checkPassword'");
     }
 }

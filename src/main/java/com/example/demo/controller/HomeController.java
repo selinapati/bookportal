@@ -55,39 +55,12 @@ public class HomeController {
         return "login";
     }
 
-    // @PostMapping("/login")
-    // public String login(@RequestParam String email, @RequestParam String
-    // password, Model model) {
-    // try {
-    // System.out.println("Email: " + email);
-    // System.out.println("Password: " + password);
-    // // Create authentication token
-    // UsernamePasswordAuthenticationToken authToken = new
-    // UsernamePasswordAuthenticationToken(email, password);
-
-    // // Authenticate the user
-    // Authentication authentication =
-    // authenticationManager.authenticate(authToken);
-
-    // // If authentication is successful, set the authentication in the
-    // // SecurityContext
-    // SecurityContextHolder.getContext().setAuthentication(authentication);
-
-    // // Redirect to the dashboard or home page
-    // return "redirect:/bookBorrow"; // Change this to your dashboard URL
-    // } catch (Exception e) {
-    // model.addAttribute("error", "Invalid username or password.");
-    // // System.out.println(username + "++++++++++");
-    // return "login"; // Return to login page with error message
-    // }
-    // }
-
     @PostMapping("/login")
     public String login(@RequestParam String email, @RequestParam String password, Model model) {
         try {
             // Debugging output to check email and password
-            System.out.println("Email: " + email);
-            System.out.println("Password: " + password);
+            // System.out.println("Email: " + email);
+            // System.out.println("Password: " + password);
 
             // Create authentication token with email
             UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(email, password);
