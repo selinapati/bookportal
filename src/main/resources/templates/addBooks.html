@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add User - KTM Portal</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-left">
+            <h1><a href="/admin">Admin Portal</a></h1>
+        </div>
+    </nav>
+
+    <div class="detail">
+        <h2>Add User Details</h2>
+        <form action="/addBooks" method="post">
+            <label for="booksId">Book ID:</label>
+            <input type="text" id="booksId" name="booksId" required>
+
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required>
+
+            <label for="author">Author:</label>
+            <input type="text" id="author" name="author" required>
+
+            <label for="availableCopies">Available Copies:</label>
+            <input type="text" id="availableCopies" name="availableCopies" required>
+
+            <label for="imageUrl">Image URL:</label>
+            <input type="text" id="imageUrl" name="imageUrl" placeholder="Enter image URL">
+
+            <input type="submit" value="Add Books">
+        </form>
+    </div>
+
+    <script>
+        document.querySelector('form').addEventListener('submit', function(event) {
+            var imageUrlInput = document.getElementById('imageUrl');
+            var url = imageUrlInput.value;
+            
+            // Simple regex for checking image URL format
+            var regex = /\.(jpeg|jpg|png|gif)$/i; // Added case insensitive flag
+            if (!regex.test(url)) {
+                alert("Please enter a valid image URL ending with .jpeg, .jpg, .png, or .gif.");
+                event.preventDefault(); // Prevent form submission
+            }
+        });
+    </script>
+</body>
+</html>

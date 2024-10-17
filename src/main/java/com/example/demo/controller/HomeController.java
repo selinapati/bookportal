@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,10 +42,10 @@ public class HomeController {
         return "index";
     }
 
-    @GetMapping("/bookBorrow")
-    public String bookBorrow() {
-        return "bookBorrow";
-    }
+    // @GetMapping("/bookBorrow")
+    // public String bookBorrow() {
+    //     return "bookBorrow";
+    // }
 
     @GetMapping("/admin")
     public String admin() {
@@ -68,9 +70,20 @@ public class HomeController {
             // Authenticate the user
             Authentication authentication = authenticationManager.authenticate(authToken);
             SecurityContextHolder.getContext().setAuthentication(authentication);
+ // Retrieve the authenticated user
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        String userRole = userDetails.getAuthorities().stream()
+                                     .findFirst() // Get the first role (assuming each user has one role)
+                                     .map(GrantedAuthority::getAuthority)
+                                     .orElse("USER"); // Default to "USER" if no roles found
 
-            // Redirect to the dashboard or home page
-            return "redirect:/bookBorrow";
+        // Redirect based on user role
+        if ("ADMIN".equals(userRole)) {
+            return "redirect:/admin"; // Redirect to admin page if user is an admin
+        } else {
+            return "redirect:/bookBorrow"; // Redirect to book borrowing page for regular users
+        }
+            
         } catch (Exception e) {
             model.addAttribute("error", "Invalid email or password.");
             return "login";

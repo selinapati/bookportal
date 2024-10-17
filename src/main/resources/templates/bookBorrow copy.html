@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Borrow Portal</title>
+    <link rel="stylesheet" href="style.css">
+
+    <script>
+        
+    </script>
+
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="nav-left">
+                <h1><a href="/index">KTM Library Portal</a></h1>
+            </div>
+            <div class="nav-right">
+                <a href="/index">Log Out</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="book-grid">
+           <!-- Book 2 -->
+           <div class="book-card">
+            <img src="img/book2.jpeg" alt="Book 2">
+            <div class="book-details">
+                <h2>Rich Dad Poor Dad</h2>
+                <p>Author: Robert T. Kiyosaki</p>
+                <p>Available: 5 copies</p><br>
+
+                <!-- Borrow Button and Form -->
+                <form id="borrowForm-2" action="/borrowBook" method="post">
+                    <input type="hidden" name="bookId" value="2">
+                    <button type="button" onclick="borrowBook(2)">Borrow</button>
+                </form>
+            </div>
+        </div>
+        
+
+            <!-- Book 2 -->
+            <div class="book-card">
+                <img src="img/book2.jpeg" alt="Book 2">
+                <div class="book-details">
+                    <h2>Rich Dad Poor Dad</h2>
+                    <p>Author: Robert T. Kiyosaki</p>
+                    <p>Available: 5 copies</p><br>
+
+                    <!-- Borrow Button and Form -->
+                    <form id="borrowForm-2" action="/borrowBook" method="post">
+                        <input type="hidden" name="bookId" value="2">
+                        <button type="button" onclick="borrowBook(2)">Borrow</button>
+                    </form>
+                </div>
+            </div>
+           
+            <!-- Book 2 -->
+            <div class="book-card">
+                <img src="img/book2.jpeg" alt="Book 2">
+                <div class="book-details">
+                    <h2>Rich Dad Poor Dad</h2>
+                    <p>Author: Robert T. Kiyosaki</p>
+                    <p>Available: 5 copies</p><br>
+
+                    <!-- Borrow Button and Form -->
+                    <form id="borrowForm-2" action="/borrowBook" method="post">
+                        <input type="hidden" name="bookId" value="2">
+                        <button type="button" onclick="borrowBook(2)">Borrow</button>
+                    </form>
+                </div>
+            </div>
+            
+
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 KTM Library Portal. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>
+
+</html>

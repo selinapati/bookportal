@@ -1,122 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Borrow Portal</title>
-    <link rel="stylesheet" href="style.css">
-
-    <script>
-        function borrowBook(bookId) {
-            fetch(`/borrow?bookId=${bookId}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                }
-            })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json(); // Parse the JSON response
-                })
-                .then(data => {
-                    const borrowButton = document.getElementById(`borrowButton-${bookId}`);
-                    const availabilityText = document.getElementById(`availability-${bookId}`);
-
-                    if (data.availableCopies === 0) {
-                        borrowButton.style.backgroundColor = 'red';
-                        borrowButton.innerText = 'Unavailable';
-                        borrowButton.disabled = true;
-                        availabilityText.innerText = 'Available: 0 copies';
-                    } else {
-                        availabilityText.innerText = `Available: ${data.availableCopies} copies`;
-                    }
-
-                    alert("You have successfully borrowed the book!");
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert("Could not borrow the book. Please try again.");
-                });
-        }
-    </script>
-
+    <title>Book List</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
 
 <body>
-    <header>
+    <main>
         <nav>
             <div class="nav-left">
-                <h1><a href="/index">KTM Library Portal</a></h1>
-            </div>
-            <div class="nav-right">
-                <a href="/index">Log Out</a>
+                <h1><a href="/">Book List</a></h1>
             </div>
         </nav>
-    </header>
-
-    <main>
-        <section class="book-grid">
-           <!-- Book 2 -->
-           <div class="book-card">
-            <img src="img/book2.jpeg" alt="Book 2">
-            <div class="book-details">
-                <h2>Rich Dad Poor Dad</h2>
-                <p>Author: Robert T. Kiyosaki</p>
-                <p>Available: 5 copies</p><br>
-
-                <!-- Borrow Button and Form -->
-                <form id="borrowForm-2" action="/borrowBook" method="post">
-                    <input type="hidden" name="bookId" value="2">
-                    <button type="button" onclick="borrowBook(2)">Borrow</button>
-                </form>
-            </div>
-        </div>
-        
-
-            <!-- Book 2 -->
-            <div class="book-card">
-                <img src="img/book2.jpeg" alt="Book 2">
-                <div class="book-details">
-                    <h2>Rich Dad Poor Dad</h2>
-                    <p>Author: Robert T. Kiyosaki</p>
-                    <p>Available: 5 copies</p><br>
-
-                    <!-- Borrow Button and Form -->
-                    <form id="borrowForm-2" action="/borrowBook" method="post">
-                        <input type="hidden" name="bookId" value="2">
-                        <button type="button" onclick="borrowBook(2)">Borrow</button>
-                    </form>
-                </div>
-            </div>
-           
-            <!-- Book 2 -->
-            <div class="book-card">
-                <img src="img/book2.jpeg" alt="Book 2">
-                <div class="book-details">
-                    <h2>Rich Dad Poor Dad</h2>
-                    <p>Author: Robert T. Kiyosaki</p>
-                    <p>Available: 5 copies</p><br>
-
-                    <!-- Borrow Button and Form -->
-                    <form id="borrowForm-2" action="/borrowBook" method="post">
-                        <input type="hidden" name="bookId" value="2">
-                        <button type="button" onclick="borrowBook(2)">Borrow</button>
-                    </form>
-                </div>
-            </div>
+        <section class="book-grid" id="bookGrid">
+            <!-- Display success or error messages -->
+            <div th:if="${successMessage}" class="alert alert-success" th:text="${successMessage}"></div>
+            <div th:if="${errorMessage}" class="alert alert-danger" th:text="${errorMessage}"></div>
             
-
+            <!-- Thymeleaf loop to display each book in the grid -->
+            <div th:each="book : ${bookBorrow}">
+                <div class="book-card">
+                    <img th:src="${book.imageUrl}" alt="Book Cover" />
+                    <h3 th:text="${book.title}">Book Title</h3>
+                    <p>Author: <span th:text="${book.author}">Author Name</span></p>
+                    <p>Availability: <span th:text="${book.availableCopies > 0 ? 'Available' : 'Borrowed'}"></span></p>
+                    <p>Available Copies: <span th:text="${book.availableCopies}">0</span></p>
+                    <br>
+                    <!-- Updated form to submit the borrow request -->
+                    <form action="/borrowBook" method="post">
+                        <input type="hidden" name="booksId" th:value="${book.booksId}" /> <!-- Book ID to be sent -->
+                        <input type="submit" value="Borrow" th:disabled="${book.availableCopies == 0}" /> <!-- Disable button if no copies are available -->
+                    </form>
+                </div>
+            </div>
         </section>
     </main>
-
-    <footer>
-        <p>&copy; 2024 KTM Library Portal. All rights reserved.</p>
-    </footer>
 </body>
-
-</html>
 
 </html>
